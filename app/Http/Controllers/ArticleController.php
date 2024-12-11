@@ -15,13 +15,11 @@ class ArticleController extends Controller
         return view('admin.articles.index', compact('articles'));
     }
 
-    // Show the form for creating a new article.
     public function create()
     {
         return view('admin.articles.create');
     }
 
-    // Store a newly created article in storage.
     public function store(Request $request)
     {
         $request->validate([
@@ -41,13 +39,11 @@ class ArticleController extends Controller
         return redirect()->route('articles.index');
     }
 
-    // Show the form for editing the specified article.
     public function edit(Article $article)
     {
         return view('admin.articles.edit', compact('article'));
     }
 
-    // Update the specified article in storage.
     public function update(Request $request, Article $article)
     {
         $request->validate([

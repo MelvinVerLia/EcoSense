@@ -11,9 +11,10 @@ return new class extends Migration
         Schema::create('contributions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('goal')->default(0); // Default to 0
-            $table->integer('current_amount')->default(0); // Default to 0
-            $table->integer('current_progress')->default(0); // Default to 0
+            $table->integer('goal'); 
+            $table->integer('current_amount')->default(0); 
+            $table->integer('current_progress')->default(0); 
+            $table->string('image')->nullable(); 
             $table->timestamps();
         });
     }

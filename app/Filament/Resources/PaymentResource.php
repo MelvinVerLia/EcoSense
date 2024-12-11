@@ -23,7 +23,11 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('id')->required(),
+                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('price')->required(),
+                Forms\Components\TextInput::make('quantity')->required(),
+                
             ]);
     }
 
@@ -31,25 +35,27 @@ class PaymentResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')->label('Payment ID')->sortable(),
+                Tables\Columns\TextColumn::make('name')->label('Payment Name')->sortable(),
+                Tables\Columns\TextColumn::make('price')->label('Price')->sortable(),
+                Tables\Columns\TextColumn::make('quantity')->label('Quantity')->sortable(),
+                Tables\Columns\TextColumn::make('total_price')
+                    ->label('Total Price')
+                    ->formatStateUsing(function ($record) {
+                        
+                        return $record->price * $record->quantity;
+                    })
+                    ->sortable(false) 
             ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+            ->filters([ 
+                
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 

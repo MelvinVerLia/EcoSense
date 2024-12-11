@@ -14,11 +14,11 @@ class Payment extends Model
 
     // Fillable attributes for mass assignment
     protected $fillable = [
-        'user_id', // The ID of the user who made the payment
-        'amount',  // The payment amount
-        'method',  // Payment method (credit card, PayPal, etc.)
-        'status',  // Payment status (pending, completed, failed)
-        'payment_date', // Date of the payment
+        'id',
+        'name',
+        'price',
+        'quantity',
+        'total_price',
     ];
 
     // Define the relationship with the User model
