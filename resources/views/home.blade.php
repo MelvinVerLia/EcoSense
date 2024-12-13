@@ -4,7 +4,6 @@
 
 @section('content')
 
-<!-- Hero Section -->
 <div class="hero">
     @if(session('success'))
         <div class="alert alert-success">
@@ -19,10 +18,8 @@
     </div>
 </div>
 
-<!-- About EcoSense Section -->
-<div class="container-fluid">
+<div class="container-fluid1">
     <div class="row">
-        <!-- Left Column: Text Content -->
         <div class="col-md-6 px-5">
             <h1 class="text-center mt-4">About EcoSense</h1>
 
@@ -108,7 +105,7 @@
 
 
 <!-- Contact Us Section -->
-<div class="container-fluid mt-5 mx-5">
+<div class="container-fluid1 mt-5 mx-5">
     <h1 class="mt-5" style="text-align: center"> Contact Us</h1>
 
     @if (session('success'))
@@ -144,7 +141,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-success btn-lg mt-4" style="width: 300px;">Submit</button>
+        <button type="submit" class="btn btn-success btn-lg mt-4 mb-5" style="width: 300px;">Submit</button>
     </form>
 </div>
 
@@ -200,7 +197,7 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .container-fluid {
+    .container-fluid1 {
         padding-left: 0;
         padding-right: 0;
     }

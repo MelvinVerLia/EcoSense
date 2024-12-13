@@ -24,7 +24,7 @@
         }
 
         .navbar .navbar-brand img {
-            height: 40px;
+            height: 50px;
         }
 
         .navbar .nav-link {
@@ -77,7 +77,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('home') }}">
-                <img src="images/logo.png" alt="Brand Logo">
+                <img src="{{asset('images/logo.png')}}" alt="Brand Logo">
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

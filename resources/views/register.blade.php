@@ -94,7 +94,7 @@
                                             <label class="form-label" for="form2Password"
                                                 style="margin-bottom: 0;">Password</label>
                                             <input type="password" id="form2Password" class="form-control form-control"
-                                                name="password" value="{{ old('password') }}" />
+                                                name="password"/>
                                             @error('password')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -105,10 +105,7 @@
                                             <label class="form-label" for="form2ConfirmPassword"
                                                 style="margin-bottom: 0;">Confirm Password</label>
                                             <input type="password" id="form2ConfirmPassword"
-                                                class="form-control form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" />
-                                            @error('password_confirmation')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+                                                class="form-control form-control" name="password_confirmation"/>
                                         </div>
 
                                         <div class="pt-1 mb-4">

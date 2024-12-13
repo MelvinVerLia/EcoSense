@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    // Display a listing of the articles.
     public function index()
     {
         $articles = Article::all();
@@ -51,7 +50,7 @@ class ArticleController extends Controller
             'content' => 'required',
             'image' => 'nullable|image',
         ]);
-$article->title = $request->title;
+        $article->title = $request->title;
         $article->content = $request->content;
         if ($request->hasFile('image')) {
             $article->image = $request->file('image')->store('articles', 'public');
@@ -66,5 +65,10 @@ $article->title = $request->title;
     {
         $article->delete();
         return redirect()->route('articles.index');
+    }
+
+    public function goToArticlePage()
+    {
+        return view('article');
     }
 }

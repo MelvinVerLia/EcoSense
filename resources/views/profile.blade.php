@@ -17,8 +17,8 @@
                 <img class="rounded-circle mt-5" width="100px"
                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                     alt="User Profile">
-                <span class="font-weight-bold">first name</span>
-                <span class="text-black-50">email.com</span>
+                <span class="font-weight-bold">{{ session('customer')['first_name'] ?? 'first_name' }}</span>
+                <span class="text-black-50">{{ session('customer')['email'] ?? 'Email' }}</span>
 
                 <div class="mt-5 d-flex flex-column gap-2">
                     <a href="{{route('profile.logout')}}" class="btn rounded mb-2"
@@ -26,7 +26,7 @@
 
                     <form action="{{ route('profile.delete') }}" method="POST">
                         @csrf
-                        @method('POST') <!-- Simulate POST request for deleting account -->
+                        @method('POST') 
                         <a href="#" class="btn btn-danger rounded" data-bs-toggle="modal"
                             data-bs-target="#deleteAccountModal">Delete Account</a>
                     </form>
@@ -47,10 +47,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <!-- Form to delete the account will be submitted after confirmation -->
                         <form id="deleteAccountForm" action="{{ route('profile.delete') }}" method="POST">
                             @csrf
-                            @method('POST') <!-- Use DELETE method for deletion -->
+                            @method('POST') 
                             <button type="submit" class="btn btn-danger">Delete Account</button>
                         </form>
                     </div>
@@ -71,15 +70,15 @@
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label class="labels">First Name: </label>
-                        <label class="labels">First Name</label>
+                        <label class="labels">{{ session('customer')['first_name'] ?? 'First Name' }}</label>
                     </div>
                     <div class="col-md-12">
                         <label class="labels">Last Name: </label>
-                        <label class="labels">Last Name</label>
+                        <label class="labels">{{ session('customer')['last_name'] ?? 'Last Name' }}</label>
                     </div>
                     <div class="col-md-12">
                         <label class="labels">Email: </label>
-                        <label class="labels">Email</label>
+                        <label class="labels">{{ session('customer')['email'] ?? 'Email' }}</label>
                     </div>
                 </div>
             </div>

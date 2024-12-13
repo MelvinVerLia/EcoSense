@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
+
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contribution;
@@ -24,7 +28,7 @@ Route::get('/register', [AuthController::class, 'goToRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
-
+Route::post('/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
 
 Route::get('/article', function () {
@@ -32,9 +36,17 @@ Route::get('/article', function () {
     return view('article', compact('articles')); // Pass the articles to the view
 })->name('article'); // Add a name to this route
 
-Route::get('/merchandise', function () {
-    return view('merchandise');
-})->name('merchandise');
+
+Route::get('/merchandise', [ProductController::class, 'getAllProducts'])->name('merchandise');
+Route::get('/merchandise/{id}', [ProductController::class, 'checkout'])->name('checkout');
+
+Route::post('/buy/{product}', [TransactionController::class, 'store'])->name('buy');
+
+
+
+
+
+
 
 Route::get('/contribute', function () {
     return view('contribute');

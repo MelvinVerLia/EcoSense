@@ -4,40 +4,85 @@
 
 @section('content')
 
-<h1 class="text-center mb-5">Merchandise</h1>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 
-<!-- Merchandise Section -->
+<!-- Product section-->
 <section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-4 justify-content-center">
+    <div class="container px-4 px-lg-5 my-5"
+        style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); padding: 20px;">
+        <div class="row gx-4 gx-lg-5 align-items-center d-flex justify-content-center">
+            <div class="col-md-6 text-center">
+                <img class="card-img-top"
+                    src="{{ $product->image ? asset('storage/' . $product->image) : 'https://dummyimage.com/600x700/dee2e6/6c757d.jpg' }}"
+                    alt="..." />
+            </div>
+            <div class="col-md-5">
+                <h1 class="display-5 fw-bolder mb-2" style="font-size: 50px">{{ $product->name }}</h1>
+                <div class="fs-5 mb-3">
+                    <span style="font-size: 40px">Rp. {{ number_format($product->price, 2) }}</span>
+                </div>
+                <div class="fs-5 mb-3">
+                    <span style="font-size: 20px">Stock Left: {{ $product->stock_quantity }}</span>
+                </div>
+                <p class="lead" style="font-size: 20px; margin-bottom: 15px;">{{ $product->description }}</p>
+                <div class="d-flex">
+                    <form action="{{ route('buy', $product->id) }}" method="POST" class="d-flex flex-column" style="gap: 30px;">
+                        @csrf
+                        <input type="number" name="quantity" value="1" min="1" class="form-control me-2"
+                            style="width: 70px; height: 40px; font-size: 20px; padding: 10px;">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="submit"
+                            style="font-size: 20px; height: 70px; width: 250px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi-cart-fill me-1"></i>
+                            Buy
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            @foreach($merchandise as $product)
+<!-- Related items section-->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="fw-bolder mb-4" style="font-size:300%;">Other Products</h2>
+        <div class="row gx-4 gx-lg-5"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+            @foreach($randomProduct as $randomProducts)
                 <div class="col mb-5">
-                    <div class="card h-100 shadow-lg rounded-3 overflow-hidden">
-                        <img src="{{ $product->image ? asset('storage/' . $product->image) : "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" }}"
-                            class="card-img-top" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
+                    <div class="card h-100">
+                        <img class="card-img-top"
+                            src="{{ $randomProducts->image ? asset('storage/' . $randomProducts->image) : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg' }}"
+                            alt="..." style="border-radius: 40px 40px 0 0; height: 300px; object-fit: cover;" />
                         <div class="card-body p-4">
-                            <div class="text-center">
-                                <h5 class="fw-bolder">{{ $product->name }}</h5>
-                                <p class="card-description">{{ $product->description }}</p>
-                                <p class="card-text">Rp. {{ number_format($product->price, 2) }}</p>
+                            <div class="text-center" style="font-size: 20px">
+                                <h5 class="fw-bolder" style="font-size: 30px">{{ $randomProducts->name }}</h5>
+                                <p class="card-text">Rp. {{ number_format($randomProducts->price, 2) }}</p>
+                                <p class="card-description">{{ $randomProducts->description }}</p>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                            <a href="{{ route('checkout', $product->id) }}" class="btn mt-auto">View Merch</a>
+                                <a class="btn btn-outline-dark mt-auto"
+                                    href="{{ route('checkout', $randomProducts->id) }}">View Merch</a>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-
         </div>
     </div>
 </section>
 
-<!-- Bootstrap Core JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
     body {
         position: relative;
@@ -147,28 +192,19 @@
     @media (max-width: 768px) {
         .row-cols-md-3 {
             grid-template-columns: 1fr;
-            /* Single column on small screens */
             gap: 1.5rem;
-            /* Adjust gap for small screens */
         }
     }
 
-    /* Button styling */
     .btn {
         font-size: 2.5em;
-        /* Increase font size */
         background-color: white;
         color: #2D642F;
         border: 2px solid #4CAF50;
         border-radius: 40px;
         text-align: center;
         font-size: 1.50em;
-        width: 60%;
-        /* Slightly increase width */
-        margin-left: auto;
-        margin-right: auto;
-        padding: 15px 25px;
-        /* Increase padding for a larger button */
+        padding: 10px 25px;
         transition: background-color 0.3s, color 0.3s;
     }
 
