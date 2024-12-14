@@ -13,15 +13,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('customer_id');  // Foreign key for the user
-            $table->unsignedBigInteger('product_id');  // Foreign key for the product
+            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->decimal('price', 10, 2);  // Price of a single product
             $table->integer('quantity');  // Quantity of products purchased
             $table->decimal('total_price', 10, 2);  // Total price (quantity * price)
             $table->timestamps();
-            
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

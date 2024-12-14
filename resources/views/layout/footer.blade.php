@@ -1,4 +1,4 @@
-<footer class="text-center text-white" style="background-color: #d4edda; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+<footer class="text-center text-white" style="background-color: #d4edda; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); padding-left: 0; padding-right: 0;">
     <div class="container-fluid">
         <section class="mt-5">
             <div class="row text-center d-flex justify-content-center pt-5">
@@ -76,6 +76,7 @@
         color: white;
         font-weight: 900;
         margin-top: auto;
+        padding: 0;
     }
 
     .fab {

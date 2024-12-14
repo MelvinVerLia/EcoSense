@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Shop Merchandise')
+@section('title', 'merchandise')
 
 @section('content')
 
@@ -31,11 +31,18 @@
                     <span style="font-size: 40px">Rp. {{ number_format($product->price, 2) }}</span>
                 </div>
                 <div class="fs-5 mb-3">
-                    <span style="font-size: 20px">Stock Left: {{ $product->stock_quantity }}</span>
+                    <span style="font-size: 20px">
+                        @if($product->stock_quantity == 0)
+                            <span style="color: red; font-weight: bold;">Sold Out</span>
+                        @else
+                            Stock Left: {{ $product->stock_quantity }}
+                        @endif
+                    </span>
                 </div>
                 <p class="lead" style="font-size: 20px; margin-bottom: 15px;">{{ $product->description }}</p>
                 <div class="d-flex">
-                    <form action="{{ route('buy', $product->id) }}" method="POST" class="d-flex flex-column" style="gap: 30px;">
+                    <form action="{{ route('buy', $product->id) }}" method="POST" class="d-flex flex-column"
+                        style="gap: 30px;">
                         @csrf
                         <input type="number" name="quantity" value="1" min="1" class="form-control me-2"
                             style="width: 70px; height: 40px; font-size: 20px; padding: 10px;">
@@ -93,7 +100,6 @@
         height: max;
     }
 
-    /* Using ::after to apply opacity to the image */
     body::after {
         content: '';
         position: absolute;
@@ -105,16 +111,13 @@
         background-size: cover;
         background-position: center;
         opacity: 0.3;
-        /* Adjust this value to control image opacity */
         z-index: -1;
-        /* Ensure it stays behind the content */
     }
 
     h1 {
         text-align: center;
         padding: 30px 0;
         background-color: rgba(52, 133, 55, 0.7);
-        /* Make background slightly transparent */
         color: white;
         margin: 0 0 40px 0;
         font-size: 2.5em;
@@ -122,12 +125,10 @@
         text-transform: uppercase;
     }
 
-    /* Card hover effect */
     .card {
         transition: transform 0.3s ease-in-out;
         background-color: rgba(212, 237, 218, 0.9);
         min-height: 550px;
-        /* Increased card height */
         width: 110%;
         border-radius: 40px;
     }
@@ -137,27 +138,23 @@
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
-    /* Card styling */
     .card-body {
         padding: 20px;
     }
 
     h5.card-title {
         font-size: 1.4rem;
-        /* Increased title size */
         font-weight: 600;
     }
 
     .card-description {
         font-size: 1.1rem;
-        /* Slightly larger description */
         color: #777;
         margin: 10px 0;
     }
 
     .card-text {
         font-size: 1.2rem;
-        /* Slightly larger text size */
         color: #555;
     }
 
@@ -165,27 +162,21 @@
         padding-top: 50px;
     }
 
-    /* Grid layout */
     .row-cols-md-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 5rem;
-        /* Increased the gap between columns and rows */
     }
 
     .col {
         max-width: 600px;
-        /* Increased max-width of card */
         width: 100%;
     }
 
-    /* Responsive design */
     @media (max-width: 1200px) {
         .row-cols-md-3 {
             grid-template-columns: repeat(2, 1fr);
-            /* Two columns on medium screens */
             gap: 2rem;
-            /* Adjust gap for medium screens */
         }
     }
 

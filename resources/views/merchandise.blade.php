@@ -165,10 +165,8 @@
         font-size: 1.50em;
         width: 60%;
         /* Slightly increase width */
-        margin-left: auto;
-        margin-right: auto;
-        padding: 15px 25px;
-        /* Increase padding for a larger button */
+        margin: 0 auto;
+        margin-bottom: 15px;
         transition: background-color 0.3s, color 0.3s;
     }
 

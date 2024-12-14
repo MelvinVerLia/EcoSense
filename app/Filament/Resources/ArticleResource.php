@@ -27,10 +27,10 @@ class ArticleResource extends Resource
 
                 // Image Upload Field
                 FileUpload::make('image')
-                    ->image() // Ensures only images can be uploaded
-                    ->disk('public') // Optionally specify the disk to store the image
-                    ->directory('articles') // Store the image in the "articles" directory
-                    ->required(), // Make it optional or required
+                    ->image() 
+                    ->disk('public') 
+                    ->directory('articles') 
+                    ->required(), 
             ]);
     }
 
@@ -38,15 +38,17 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('title')->searchable(),
                 Tables\Columns\TextColumn::make('author'),
 
-                // Add a column to display the image
                 Tables\Columns\ImageColumn::make('image')
-                    ->disk('public') // Specify the disk if necessary
+                    ->disk('public') 
                     ->sortable(),
             ])
-            ->filters([]);
+            ->filters([])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),  
+            ]);
     }
 public static function getRelations(): array
     {

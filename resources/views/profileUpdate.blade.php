@@ -42,7 +42,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <form id="deleteAccountForm" action="{{ route('profile.delete') }}" method="POST">
                             @csrf
-                            @method('POST') 
+                            @method('POST')
                             <button type="submit" class="btn btn-danger">Delete Account</button>
                         </form>
                     </div>
@@ -144,37 +144,13 @@
 
 <style>
     body {
-        background: rgb(99, 39, 120)
+        background: url('{{ asset('images/forest.png') }}') no-repeat center center;
+        background-size: cover;
     }
 
     .form-control:focus {
         box-shadow: none;
-        border-color: #BA68C8
-    }
-
-    .profile-button {
-        background: rgb(99, 39, 120);
-        box-shadow: none;
-        border: none
-    }
-
-    .profile-button:hover {
-        background: #682773
-    }
-
-    .profile-button:focus {
-        background: #682773;
-        box-shadow: none
-    }
-
-    .profile-button:active {
-        background: #682773;
-        box-shadow: none
-    }
-
-    .back:hover {
-        color: #682773;
-        cursor: pointer
+        border-color:rgb(59, 153, 75)
     }
 
     .labels {
@@ -182,14 +158,11 @@
         margin: 0;
     }
 
-
     .profile-photo {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        /* Makes the image circular */
         object-fit: cover;
-        /* Ensures the image fits within the circle */
     }
 
     .upload-photo-container {
@@ -197,7 +170,6 @@
         align-items: center;
         padding-top: 10px;
         border-radius: 50px;
-        /* Rounded container */
     }
 </style>
 

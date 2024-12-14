@@ -26,7 +26,7 @@
 
                     <form action="{{ route('profile.delete') }}" method="POST">
                         @csrf
-                        @method('POST') 
+                        @method('POST')
                         <a href="#" class="btn btn-danger rounded" data-bs-toggle="modal"
                             data-bs-target="#deleteAccountModal">Delete Account</a>
                     </form>
@@ -49,7 +49,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <form id="deleteAccountForm" action="{{ route('profile.delete') }}" method="POST">
                             @csrf
-                            @method('POST') 
+                            @method('POST')
                             <button type="submit" class="btn btn-danger">Delete Account</button>
                         </form>
                     </div>
@@ -90,7 +90,8 @@
 
 <style>
     body {
-        background: rgb(99, 39, 120)
+        background: url('{{ asset('images/forest.png') }}') no-repeat center center;
+        background-size: cover;
     }
 
     .form-control:focus {

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -19,8 +21,7 @@ use App\Models\User;
 
 
 Route::get('/home', [HomeController::class, 'displayHome'])->name('home');
-
-
+Route::post('/contact', [HomeController::class, 'storeComplaints'])->name('contact.submit');
 
 Route::get('/', [AuthController::class, 'redirect'])->name('login');
 Route::get('/login', [AuthController::class, 'goToLogin'])->name('login');
@@ -31,10 +32,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 
 
-Route::get('/article', function () {
-    $articles = Article::all(); // Fetch all articles from the database
-    return view('article', compact('articles')); // Pass the articles to the view
-})->name('article'); // Add a name to this route
+Route::get('/article', [ArticlesController::class, 'index'])->name('article');
+Route::get('/article/{id}', [ArticlesController::class, 'goToDetail'])->name('article.detail');
 
 
 Route::get('/merchandise', [ProductController::class, 'getAllProducts'])->name('merchandise');
@@ -42,15 +41,10 @@ Route::get('/merchandise/{id}', [ProductController::class, 'checkout'])->name('c
 
 Route::post('/buy/{product}', [TransactionController::class, 'store'])->name('buy');
 
+Route::get('/contribute', [ContributionsController::class, 'index'])->name('contribute');
+Route::get('/contribute/{id}', [ContributionsController::class, 'goToDetail'])->name('contribute.detail');
+Route::post('/contribute/{id}', [ContributionsController::class, 'donate'])->name('donate');
 
-
-
-
-
-
-Route::get('/contribute', function () {
-    return view('contribute');
-})->name('contribute');
 
 Route::get('/account', function () {
     return view('account');
@@ -64,8 +58,6 @@ Route::get('/profileUpdate', function () {
     return view('profileUpdate');
 })->name('profileUpdate');
 
-Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.form');
-Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 Route::get('/logout', [AuthController::class, 'logout'])->name('profile.logout');
 Route::post('/profile-delete', [AuthController::class, 'deleteAccount'])->name('profile.delete');
 

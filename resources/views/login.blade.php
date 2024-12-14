@@ -16,14 +16,23 @@
         }
 
         .btn-custom:hover {
+            background-color: #4CAF50;
             color: white;
-            background-color: #006400;
         }
 
+        .btn-custom:focus{
+            box-shadow: none;
+        }
+        
         .card {
             border: none;
             border-radius: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: rgb(59, 153, 75)
         }
     </style>
 </head>

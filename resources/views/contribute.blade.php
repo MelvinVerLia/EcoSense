@@ -6,102 +6,63 @@
 
 <h1>Contribute</h1>
 
-<div class="container-fluid px-3">
+<div class="container-fluid">
     <div class="row justify-content-center">
-        
-        <!-- Card 1 -->
-        <div class="col-md-8 mb-3">
-            <div class="card shadow-lg border-0 d-flex flex-row align-items-center" style="height: 500px;">
-                <div class="col-md-4 d-flex justify-content-center align-items-center p-0">
-                    <img src="{{ asset('images/Reforest.jpeg') }}" class="card-img-left" alt="Reforest" style="height: 300px; width: 90%; object-fit: cover; object-position: center; margin: 0 0 0 40px;">
-                </div>
-                <div class="col-md-8 px-2 py-2 d-flex flex-column justify-content-between">
-                    <h5 class="card-title">Donate to Reforestation Projects</h5>
-                    <p class="card-text">Reforestation and afforestation projects are crucial for reversing deforestation and combating climate change.</p>
-                    <!-- Updated Progress Bar -->
-                    <div class="progress mb-2" style="height: 10px; margin: 0 0 0 60px; width: 90%;">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
+
+        @foreach ($contribute as $c)
+            <div class="col-md-8 mb-5" style="padding: 0;">
+                <div class="card shadow-lg border-0 d-flex flex-row align-items-center px-5 py-5">
+                    <div class="col-md-4 d-flex justify-content-center align-items-center">
+                        <img src="{{ $c->image ? asset('storage/' . $c->image) : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg' }}"
+                            style="height: 100%; object-fit: cover; object-position: center;" class="card-img-top"
+                            alt="{{ $c->name }}" />
                     </div>
-                    <p class="text-end">60%</p>
-                    <p class="text-end">$10.00</p>
-                    <a href="/Donate1" class="btn btn-success rounded-pill mt-1">Donate Now!</a>
+                    <div class="col-md-8 d-flex flex-column justify-content-between">
+                        <h5 class="card-title">{{$c->name}}</h5>
+                        <p class="card-text">{{ \Illuminate\Support\Str::limit($c->content, 100) }}</p>
+                        <div class="progress mb-2" >
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                aria-valuenow="{{ $c->current_progress * 100 }}" aria-valuemin="0" aria-valuemax="100"
+                                style="width: {{ $c->current_progress }}%;">
+                            </div>
+                        </div>
+                        <p class="text-end">{{$c->current_progress}}%</p>
+                        <a href="{{route('contribute.detail', $c->id)}}" class="btn btn-success rounded-pill mt-1">Donate Now!</a>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="col-md-8 mb-3">
-            <div class="card shadow-lg border-0 d-flex flex-row align-items-center" style="height: 500px;">
-                <div class="col-md-4 d-flex justify-content-center align-items-center p-0">
-                    <img src="{{ asset('images/Agri.jpeg') }}" class="card-img-left" alt="Agri" style="height: 300px; width: 90%; object-fit: cover; object-position: center; margin: 0 0 0 40px;">
-                </div>
-                <div class="col-md-8 px-2 py-2 d-flex flex-column justify-content-between">
-                    <h5 class="card-title">Support Sustainable Agriculture Initiatives</h5>
-                    <p class="card-text">Sustainable farming promotes soil health, biodiversity, and food security.</p>
-                    <!-- Updated Progress Bar -->
-                    <div class="progress mb-2" style="height: 10px; margin: 0 0 0 60px; width: 90%;">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                    </div>
-                    <p class="text-end">75%</p>
-                    <p class="text-end">$15.00</p>
-                    <a href="/Donate2" class="btn btn-success rounded-pill mt-1">Donate Now!</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-8 mb-3">
-            <div class="card shadow-lg border-0 d-flex flex-row align-items-center" style="height: 500px;">
-                <div class="col-md-4 d-flex justify-content-center align-items-center p-0">
-                    <img src="{{ asset('images/Greentech.jpeg') }}" class="card-img-left" alt="Greentech" style="height: 300px; width: 90%; object-fit: cover; object-position: center; margin: 0 0 0 40px;">
-                </div>
-                <div class="col-md-8 px-2 py-2 d-flex flex-column justify-content-between">
-                    <h5 class="card-title">Support Green Technology and Innovation</h5>
-                    <p class="card-text">Green tech offers solutions for renewable energy, waste management, and</p>
-                    <p class="card-text">more.</p>
-                    <!-- Updated Progress Bar -->
-                    <div class="progress mb-2" style="height: 10px; margin: 0 0 0 60px; width: 90%;">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-                    </div>
-                    <p class="text-end">50%</p>
-                    <p class="text-end">$20.00</p>
-                    <a href="/Donate3" class="btn btn-success rounded-pill mt-1">Donate Now!</a>
-                </div>
-            </div>
-        </div>
-
+        @endforeach
     </div>
 </div>
 
 <style>
     body {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    height: max;
-}
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        height: 100%;
+    }
 
-/* Using ::after to apply opacity to the image */
-body::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('{{ asset('images/BG.png') }}');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.3; /* Adjust this value to control image opacity */
-    z-index: -1; /* Ensure it stays behind the content */
-}
+    body::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('{{ asset('images/BG.png') }}');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3;
+        z-index: -1;
+    }
 
     h1 {
         text-align: center;
         padding: 30px 0;
-        background-color: rgba(52, 133, 55, 0.7); /* Make background slightly transparent */
+        background-color: rgba(52, 133, 55, 0.7);
         color: white;
         margin: 0 0 40px 0;
         font-size: 2.5em;
@@ -109,16 +70,20 @@ body::after {
         text-transform: uppercase;
     }
 
+    .progress{
+        height: 10px; 
+        margin-left: 60px;
+        margin-right: 70px;
+    }
+
     .container-fluid {
-        padding-left: 20px;
-        padding-right: 20px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .card {
         transition: transform 0.3s ease;
-        background-color: rgba(212, 237, 218, 0.9); /* Semi-transparent background for cards */
-        height: 500px;
-        margin: 0 0 40px 0;
+        background-color: rgba(212, 237, 218, 0.9);
         border-radius: 40px;
     }
 
@@ -133,40 +98,35 @@ body::after {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .col-md-8 {
-        padding-left: 10px;
-        padding-right: 10px;
+        height: 400px; /* Ensure the container has a fixed height */
+        overflow: hidden; /* Prevent image overflow */
     }
 
     .card-title {
-        font-size: 3.00em;
-        margin: 0 0 0.5rem 60px;
+        font-size: 48px;
+        margin: 0 0 0.5rem 70px;
     }
 
     .card-text {
-        font-size: 2.00em;
-        margin: 0 40px 0.5rem 60px;
+        font-size: 24px;
+        margin: 0 60px 0.5rem 70px;
     }
 
     .btn {
-    font-size: 2.5em; /* Increase font size */
-    background-color: white;
-    color: #2D642F;
-    border: 2px solid #4CAF50;
-    text-align: center;
-    width: 60%; /* Slightly increase width */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 15px 25px; /* Increase padding for a larger button */
-    transition: background-color 0.3s, color 0.3s;
-}
+        font-size: 24px;
+        background-color: white;
+        color: #2D642F;
+        border: 2px solid #4CAF50;
+        text-align: center;
+        width: 50%;
+        margin: 0 auto;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
-.btn:hover {
-    background-color: #4CAF50;
-    color: white;
-}
+    .btn:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
 
 
     @media (max-width: 768px) {

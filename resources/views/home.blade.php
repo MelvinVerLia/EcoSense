@@ -4,17 +4,28 @@
 
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success w-100" style="margin-bottom: 0;">
+        {{ session('success') }}
+    </div>
+@endif
+@if(session('contact_success'))
+    <div class="alert alert-success w-100" style="margin-bottom: 0;">
+        {{ session('contact_success') }}
+    </div>
+@endif
+@if(session('contact_err'))
+    <div class="alert alert-danger w-100" style="margin-bottom: 0;">
+        {{ session('contact_err') }}
+    </div>
+@endif
+
 <div class="hero">
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
     <div class="hero-content">
         <h1>Preserve Our Forests, Protect Our Future</h1>
         <p>Together, we can make a difference</p>
         <p>Join Us in Our Mission Today</p>
-        <a href="#" class="btn btn-success rounded-pill">Contribute Now</a>
+        <a href="{{route('contribute')}}" class="btn btn-success rounded-pill">Contribute Now</a>
     </div>
 </div>
 
@@ -50,250 +61,258 @@
     </div>
 </div>
 
-<!-- Featured Products Section -->
 <h1 class="mt-5" style="text-align: center">Check Out Our Products</h1>
 
-<div class="row mt-4" style="margin-bottom: 10px;">
-    <!-- Product 1 -->
-    <div class="col-md-3 d-flex justify-content-center">
-        <div class="card product-card">
-            <img src="{{ asset('images/lanyard.png') }}" class="card-img-top" alt="Product 1">
-            <div class="card-body">
-                <h5 class="card-title">Lanyard</h5>
-                <p class="card-text">$10.00</p>
-                <a href="#" class="btn btn-success rounded-1">Buy Now</a>
+<div class="row mt-4">
+
+    @foreach ($products as $p)
+        <div class="col mb-5 d-flex justify-content-center align-items-center">
+            <div class="card h-100 shadow-lg rounded-3 overflow-hidden text-center">
+                <img src="{{ $p->image ? asset('storage/' . $p->image) : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg' }}"
+                    class="card-img-top" alt="{{ $p->name }}" style="height: 250px; object-fit: cover;">
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <h5 class="fw-bolder">{{ $p->name }}</h5>
+                        <p class="card-description">{{ $p->description }}</p>
+                        <p class="card-text">Rp. {{ number_format($p->price, 2) }}</p>
+                    </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a href="{{ route('checkout', $p->id) }}" class="btn mt-auto">View Merch</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @endforeach
 
+    <div class="container-fluid1 mt-5 mx-5">
+        <h1 class="mt-5" style="text-align: center"> Contact Us</h1>
 
-    <!-- Product 2 -->
-    <div class="col-md-3 d-flex justify-content-center">
-        <div class="card product-card">
-            <img src="{{ asset('images/earth.png') }}" class="card-img-top" alt="Product 2">
-            <div class="card-body">
-                <h5 class="card-title">Earth Plush</h5>
-                <p class="card-text">$15.00</p>
-                <a href="#" class="btn btn-success rounded-1">Buy Now</a>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
-        </div>
-    </div>
+        @endif
 
-    <div class="col-md-3 d-flex justify-content-center">
-        <div class="card product-card">
-            <img src="{{ asset('images/earth.png') }}" class="card-img-top" alt="Product 2">
-            <div class="card-body">
-                <h5 class="card-title">Earth Plush</h5>
-                <p class="card-text">$15.00</p>
-                <a href="#" class="btn btn-success rounded-1">Buy Now</a>
+        <form action="{{ route('contact.submit') }}" method="POST" style="max-width: 1000px;">
+            @csrf
+
+            <div class="form-group mb-1">
+                <label for="email" class="font-weight-bold">Email</label>
+                <input type="email" class="form-control shadow-sm" name="email" id="email">
+                @error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-        </div>
-    </div>
 
-    <!-- Product 3 -->
-    <div class="col-md-3 d-flex justify-content-center">
-        <div class="card product-card">
-            <img src="{{ asset('images/tshirt.png') }}" class="card-img-top" alt="Product 3">
-            <div class="card-body">
-                <h5 class="card-title">Eco T-shirt</h5>
-                <p class="card-text">$20.00</p>
-                <a href="#" class="btn btn-success rounded-1">Buy Now</a>
+            <div class="form-group">
+                <label for="problem" class="font-weight-bold">Describe Your Problem</label>
+                <textarea class="form-control shadow-sm" name="complaints" id="complaints" rows="4"></textarea>
+                @error('complaints')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
-        </div>
+
+            <button type="submit" class="btn btn-success btn-lg mt-4 mb-5" style="width: 300px;">Submit</button>
+        </form>
     </div>
-</div>
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-<!-- Contact Us Section -->
-<div class="container-fluid1 mt-5 mx-5">
-    <h1 class="mt-5" style="text-align: center"> Contact Us</h1>
+        body {
+            overflow-x: hidden;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            height: max;
+        }
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('{{ asset('images/BG.png') }}');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: -1;
+        }
 
-    <form action="{{ route('contact.submit') }}" method="POST" style="max-width: 1000px;">
-        @csrf
+        .btn {
+            font-size: 2.5em;
+            background-color: white;
+            color: #2D642F;
+            border: 2px solid #4CAF50;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 1.50em;
+            margin: 0 auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-        <div class="form-group">
-            <label for="name" class="font-weight-bold">Name</label>
-            <input type="text" class="form-control shadow-sm" name="name" id="name" required>
-            @error('name')
-                <div class="alert alert-danger mt-2">{{ $message }}</div>
-            @enderror
-        </div>
+        .form-control:focus {
+            box-shadow: none;
+            border-color: rgb(59, 153, 75)
+        }
 
-        <div class="form-group">
-            <label for="email" class="font-weight-bold">Email</label>
-            <input type="email" class="form-control shadow-sm" name="email" id="email" required>
-            @error('email')
-                <div class="alert alert-danger mt-2">{{ $message }}</div>
-            @enderror
-        </div>
+        .btn:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
 
-        <div class="form-group">
-            <label for="problem" class="font-weight-bold">Describe Your Problem</label>
-            <textarea class="form-control shadow-sm" name="problem" id="problem" rows="4" required></textarea>
-            @error('problem')
-                <div class="alert alert-danger mt-2">{{ $message }}</div>
-            @enderror
-        </div>
+        .hero {
+            background: url('{{ asset('images/forest.png') }}') no-repeat center center;
+            background-size: cover;
+            height: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
 
-        <button type="submit" class="btn btn-success btn-lg mt-4 mb-5" style="width: 300px;">Submit</button>
-    </form>
-</div>
-
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    html,
-    body {
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    .hero {
-        background: url('{{ asset('images/forest.png') }}') no-repeat center center;
-        background-size: cover;
-        height: 900px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: white;
-        padding: 20px;
-    }
-
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        font-weight: 700;
-    }
-
-    .hero p {
-        font-size: 1.5rem;
-    }
-
-    .hero .btn {
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 1rem;
-    }
-
-    .product-card {
-        width: 100%;
-        max-width: 300px;
-        border-radius: 10px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .container-fluid1 {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .row {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .col-md-6 {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .product-card img {
-        height: 200px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-
-    .product-card .card-body {
-        padding: 20px;
-        text-align: center;
-    }
-
-    .buy-now-btn {
-        transition: background-color 0.3s, transform 0.3s;
-        width: 100px;
-    }
-
-    .buy-now-btn:hover {
-        background-color: #4CAF50;
-        transform: scale(1.05);
-    }
-
-    .form-group label {
-        font-size: 1rem;
-        font-weight: 600;
-    }
-
-    .form-control {
-        font-size: 1rem;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    @media (max-width: 768px) {
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .hero p {
+            font-size: 1.5rem;
+        }
+
+        .hero .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        .card {
+            transition: transform 0.3s ease-in-out;
+            background-color: rgba(212, 237, 218, 0.9);
+            min-height: 550px;
+            width: 70%;
+            border-radius: 40px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        h5.card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            color: #777;
+            margin: 10px 0;
+        }
+
+        .card-text {
             font-size: 1.2rem;
+            color: #555;
         }
-    }
 
-    @media (max-width: 576px) {
-        .hero {
-            height: 250px;
+        .container {
+            padding-top: 50px;
         }
-    }
 
-    .full-width-image {
-        width: 100%;
-        height: auto;
-        max-height: 700px;
-        /* Adjust this value to reduce the height */
-        object-fit: cover;
-    }
+        .container-fluid1 {
+            padding-left: 0;
+            padding-right: 0;
+        }
 
-    h1 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #333;
-    }
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
 
-    p {
-        font-size: 1.3rem;
-        line-height: 1.6;
-    }
+        .col-md-6 {
+            padding-left: 0;
+            padding-right: 0;
+        }
 
-    .lead {
-        font-size: 1.3rem;
-    }
+        .form-group label {
+            font-size: 1rem;
+            font-weight: 600;
+        }
 
-    .text-muted {
-        color: #6c757d;
-    }
+        .form-control {
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 10px;
+        }
 
-    .text-dark {
-        color: #333;
-    }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
 
-    .text-success {
-        color: #28a745;
-    }
-</style>
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
 
-@endsection
+        @media (max-width: 576px) {
+            .hero {
+                height: 250px;
+            }
+
+            footer {
+                display: none;
+            }
+        }
+
+        .full-width-image {
+            width: 100%;
+            height: auto;
+            max-height: 700px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .lead {
+            font-size: 1.3rem;
+        }
+
+        .text-muted {
+            color: #6c757d;
+        }
+
+        .text-dark {
+            color: #333;
+        }
+
+        .text-success {
+            color: #28a745;
+        }
+    </style>
+
+    @endsection

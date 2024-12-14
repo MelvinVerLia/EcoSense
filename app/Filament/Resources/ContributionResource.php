@@ -6,6 +6,7 @@ use App\Filament\Resources\ContributionResource\Pages;
 use App\Filament\Resources\ContributionResource\RelationManagers;
 use App\Models\Contribution;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,47 +25,61 @@ class ContributionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id')->required(),
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('goal')->numeric()->required(),
-                Forms\Components\TextInput::make('current_amount')->numeric()->required(),
-                Forms\Components\TextInput::make('current_progress')
-                    ->label('Progress')
-                    ->dehydrateStateUsing(function ($state, $record) {
-                        // Ensure $record is not null
-                        if ($record && isset($record->goal) && $record->goal > 0) {
-                            return round(($record->current_amount / $record->goal) * 100) . '%';
-                        }
-                        return '0%'; 
-                    }),
+                Forms\Components\TextInput::make('name')
+                    ->label('Name')
+                    ->required(),
+                Forms\Components\Textarea::make('content')
+                    ->label('Content')
+                    ->required(),
+                Forms\Components\TextInput::make('goal')
+                    ->label('Goal')
+                    ->numeric()
+                    ->required(),
+                FileUpload::make('image')
+                    ->image()
+                    ->disk('public')
+                    ->directory('contributions')
+                    ->required(),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
-        ->columns([
-            Tables\Columns\TextColumn::make('name')->sortable(),
-            Tables\Columns\TextColumn::make('goal')->sortable(),
-            Tables\Columns\TextColumn::make('current_amount')->sortable(),
-            Tables\Columns\TextColumn::make('current_progress')->sortable(),
+            ->columns([
+                Tables\Columns\TextColumn::make('name')->label('Name')
+                    ->sortable()
+                    ->searchable(),
 
-        ])
-        ->filters([
-            
-        ])
-        ->actions([
-            Tables\Actions\EditAction::make(),
-        ])
-        ->bulkActions([
-            Tables\Actions\DeleteBulkAction::make(),
-        ]);
+                Tables\Columns\TextColumn::make('content')->label('Content')
+                    ->sortable()
+                    ->searchable(),
+
+                Tables\Columns\TextColumn::make('goal')->label('Goal')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('total_raised')->label('Total Raised')
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('current_progress')->label('Current Progress')
+                    ->sortable(),
+
+                Tables\Columns\ImageColumn::make('image')->label('Image')
+                    ->disk('public')
+                    ->size(50),  
+            ])
+            ->filters([
+                
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),  
+            ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            
+
         ];
     }
 

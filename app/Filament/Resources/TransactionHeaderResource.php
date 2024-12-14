@@ -28,14 +28,12 @@ class TransactionHeaderResource extends Resource
                 Tables\Columns\TextColumn::make('product_id')->label('Product ID')->sortable(),
                 Tables\Columns\TextColumn::make('price')->label('Price')->sortable(),
                 Tables\Columns\TextColumn::make('quantity')->label('Quantity')->sortable(),
-                Tables\Columns\TextColumn::make('total_price')
-                    ->label('Total Price')
-                    ->formatStateUsing(function ($record) {
-                        return $record->price * $record->quantity;
-                    })
-                    ->sortable(false),
+                Tables\Columns\TextColumn::make('total_price')->label('Total Price')->sortable(),
             ])
             ->filters([
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),  
             ]);
     }
 

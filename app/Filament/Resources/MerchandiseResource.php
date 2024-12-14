@@ -43,7 +43,7 @@ class MerchandiseResource extends Resource
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')
-                    ->directory('products')
+                    ->directory('merchandises')
                     ->required(),
             ]);
     }
@@ -70,6 +70,9 @@ class MerchandiseResource extends Resource
             ])
             ->filters([
                 // Add filters here, e.g. by stock quantity or price
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),  
             ]);
     }
 

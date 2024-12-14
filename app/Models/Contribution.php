@@ -12,15 +12,7 @@ class Contribution extends Model
     
     protected $table = 'contributions';
 
-    
-    protected $fillable = [
-        'id',
-        'name', 
-        'goal',  
-        'current_amount',  
-        'current_progress',  
-    ];
-
+    protected $fillable = ['name', 'content', 'goal', 'image'];
     
     public function user()
     {

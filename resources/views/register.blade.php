@@ -14,15 +14,24 @@
             transition: 0.3s;
         }
 
+        .btn-custom:focus{
+            box-shadow: none;
+        }
+
         .btn-custom:hover {
+            background-color: #4CAF50;
             color: white;
-            background-color: #006400;
         }
 
         .card {
             border: none;
             border-radius: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control:focus {
+            box-shadow: none;
+            border-color: rgb(59, 153, 75)
         }
     </style>
 </head>
@@ -59,7 +68,8 @@
                                                     <label class="form-label" for="form2FirstName"
                                                         style="margin-bottom: 0;">First Name</label>
                                                     <input type="text" id="form2FirstName"
-                                                        class="form-control form-control" name="first_name" value="{{ old('first_name') }}" />
+                                                        class="form-control form-control" name="first_name"
+                                                        value="{{ old('first_name') }}" />
                                                     @error('first_name')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -70,7 +80,8 @@
                                                     <label class="form-label" for="form2LastName"
                                                         style="margin-bottom: 0;">Last Name</label>
                                                     <input type="text" id="form2LastName"
-                                                        class="form-control form-control" name="last_name" value="{{ old('last_name') }}" />
+                                                        class="form-control form-control" name="last_name"
+                                                        value="{{ old('last_name') }}" />
                                                     @error('last_name')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
@@ -94,7 +105,7 @@
                                             <label class="form-label" for="form2Password"
                                                 style="margin-bottom: 0;">Password</label>
                                             <input type="password" id="form2Password" class="form-control form-control"
-                                                name="password"/>
+                                                name="password" />
                                             @error('password')
                                                 <div class="text-danger">{{ $message }}</div>
                                             @enderror
@@ -105,7 +116,7 @@
                                             <label class="form-label" for="form2ConfirmPassword"
                                                 style="margin-bottom: 0;">Confirm Password</label>
                                             <input type="password" id="form2ConfirmPassword"
-                                                class="form-control form-control" name="password_confirmation"/>
+                                                class="form-control form-control" name="password_confirmation" />
                                         </div>
 
                                         <div class="pt-1 mb-4">
