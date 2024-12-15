@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/build/(.*)",
-            "dest": "/public/build/"
+            "dest": "/public/build/$1"
         },
         {
             "src": "/(.*)",
@@ -17,27 +17,27 @@
         },
         {
             "src": "/images/(.*)",
-            "dest": "/public/images/"
+            "dest": "/public/images/$1"
         },
         {
             "src": "/articles/(.*)",
-            "dest": "/public/storage/articles/"
+            "dest": "/public/storage/articles/$1"
         },
         {
             "src": "/contributions/(.*)",
-            "dest": "/public/storage/contributions/"
+            "dest": "/public/storage/contributions/$1"
         },
         {
             "src": "/merchandises/(.*)",
-            "dest": "/public/storage/merchandises/"
-        },
-        {
-            "src": "/css/filament/(.*)",
-            "dest": "/public/js/filament/$1"
+            "dest": "/public/storage/merchandises/$1"
         },
         {
             "src": "/css/filament/(.*)",
             "dest": "/public/css/filament/$1"
+        },
+        {
+            "src": "/js/filament/(.*)",
+            "dest": "/public/js/filament/$1"
         }
     ],
     "public": true,
