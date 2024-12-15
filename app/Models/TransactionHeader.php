@@ -11,7 +11,6 @@ class TransactionHeader extends Model
 
     protected $table = 'transactions';
 
-    // Define which attributes can be mass-assigned
     protected $fillable = [
         'user_id',
         'product_id',
@@ -20,7 +19,6 @@ class TransactionHeader extends Model
         'total_price',
     ];
 
-    // Optional: Define relationships (if any) with User and Product models
     public function customer()
     {
         return $this->belongsTo(Customer::class);

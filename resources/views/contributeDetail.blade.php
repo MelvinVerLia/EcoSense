@@ -14,7 +14,6 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <!-- Donation Form -->
         <div class="col-md-8 mt-4">
             <div class="img-container mb-4">
                 <img src="{{ $contribute->image ? asset('storage/' . $contribute->image) : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg' }}"

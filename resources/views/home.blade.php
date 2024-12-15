@@ -89,12 +89,6 @@
     <div class="container-fluid1 mt-5 mx-5">
         <h1 class="mt-5" style="text-align: center"> Contact Us</h1>
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
         <form action="{{ route('contact.submit') }}" method="POST" style="max-width: 1000px;">
             @csrf
 

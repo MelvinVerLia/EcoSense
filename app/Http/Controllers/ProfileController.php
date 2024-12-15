@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -42,5 +43,21 @@ class ProfileController extends Controller
         
         return redirect()->route('home')->with('success', 'Profile updated successfully!');
 
+    }
+
+    public function goToProfile()
+    {
+        if (!Session::has('customer')) {
+            return redirect()->route('login');
+        }
+        return view('profile');
+    }
+
+    public function goToUpdateProfile()
+    {
+        if (!Session::has('customer')) {
+            return redirect()->route('login');
+        }
+        return view('profileUpdate');
     }
 }

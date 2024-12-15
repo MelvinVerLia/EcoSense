@@ -15,7 +15,6 @@
     </div>
 @endif
 
-<!-- Product section-->
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5"
         style="background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); padding: 20px;">
@@ -26,23 +25,23 @@
                     alt="..." />
             </div>
             <div class="col-md-5">
-                <h1 class="display-5 fw-bolder mb-2" style="font-size: 50px">{{ $product->name }}</h1>
+                <h1 class="display-5 fw-bolder mb-2" style="font-size: 30px">{{ $product->name }}</h1>
                 <div class="fs-5 mb-3">
                     <span style="font-size: 40px">Rp. {{ number_format($product->price, 2) }}</span>
                 </div>
                 <div class="fs-5 mb-3">
                     <span style="font-size: 20px">
                         @if($product->stock_quantity == 0)
-                            <span style="color: red; font-weight: bold;">Sold Out</span>
+                            <span style="color: red; font-weight: bolder;">Sold Out</span>
                         @else
                             Stock Left: {{ $product->stock_quantity }}
                         @endif
                     </span>
                 </div>
-                <p class="lead" style="font-size: 20px; margin-bottom: 15px;">{{ $product->description }}</p>
+                <p class="lead" style="font-size: 18px; margin-bottom: 15px;">{{ $product->description }}</p>
                 <div class="d-flex">
                     <form action="{{ route('buy', $product->id) }}" method="POST" class="d-flex flex-column"
-                        style="gap: 30px;">
+                        style="gap: 20px;">
                         @csrf
                         <input type="number" name="quantity" value="1" min="1" class="form-control me-2"
                             style="width: 70px; height: 40px; font-size: 20px; padding: 10px;">
@@ -58,7 +57,6 @@
     </div>
 </section>
 
-<!-- Related items section-->
 <section class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
         <h2 class="fw-bolder mb-4" style="font-size:300%;">Other Products</h2>

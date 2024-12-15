@@ -10,26 +10,24 @@
 
 <div class="container-fluid">
     <div class="row">
-        <!-- Left Column: Text Content -->
         <div class="col-md-8 mx-auto px-4 py-5">
 
-            <!-- Article Image -->
             <div class="image-container mb-4">
                 <h5>{{$article->created_at}}</h5>
                 <img src="{{ $article->image ? asset('storage/' . $article->image) : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg' }}"
                     style="height: 600px; object-fit: cover; object-position: center;" class="card-img-top"
                     alt="{{ $article->title }}" />
-                <h5>{{$article->author}}</h5>
+                <h5 class="fw-bolder">By: {{$article->author}}</h5>
             </div>
 
             <p class="text-dark">
                 @php
-                    $words = explode(' ', $article->content); // Split content into words
-                    $chunks = array_chunk($words, 100); // Split the words into chunks of 100 words
+                    $words = explode(' ', $article->content); 
+                    $chunks = array_chunk($words, 100); 
                 @endphp
 
                 @foreach($chunks as $chunk)
-                    <p>{{ implode(' ', $chunk) }}</p> <!-- Rejoin the chunk of words into a string and wrap in a new <p> -->
+                    <p>{{ implode(' ', $chunk) }}</p> 
                 @endforeach
             </p>
         </div>
@@ -58,9 +56,7 @@
         background-size: cover;
         background-position: center;
         opacity: 0.3;
-        /* Adjust this value to control image opacity */
         z-index: -1;
-        /* Ensure it stays behind the content */
     }
 
     header h1 {
@@ -84,7 +80,6 @@
         font-size: 20px;
     }
 
-    /* Styling for small devices */
     @media (max-width: 767px) {
         header h1 {
             font-size: 2.2em;

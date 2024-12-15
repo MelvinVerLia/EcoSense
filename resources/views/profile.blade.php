@@ -134,9 +134,7 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        /* Makes the image circular */
         object-fit: cover;
-        /* Ensures the image fits within the circle */
     }
 
     .upload-photo-container {
@@ -144,7 +142,6 @@
         align-items: center;
         padding-top: 10px;
         border-radius: 50px;
-        /* Rounded container */
     }
 </style>
 

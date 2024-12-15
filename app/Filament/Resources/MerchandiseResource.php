@@ -62,14 +62,13 @@ class MerchandiseResource extends Resource
                 Tables\Columns\TextColumn::make('stock_quantity')
                     ->sortable(),
 
-                // Display product image as thumbnail
                 Tables\Columns\ImageColumn::make('image')
                     ->disk('public')
                     ->sortable()
-                    ->size(50),  // Set image size as per your requirements
+                    ->size(50), 
             ])
             ->filters([
-                // Add filters here, e.g. by stock quantity or price
+ 
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),  

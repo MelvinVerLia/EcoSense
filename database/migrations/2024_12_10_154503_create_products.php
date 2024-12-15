@@ -14,7 +14,7 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->integer('stock_quantity');
-            $table->string('image')->nullable(); // To store image path
+            $table->string('image')->nullable(); 
             $table->timestamps();
         });
     }

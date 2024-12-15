@@ -30,11 +30,11 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.su
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
 Route::post('/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
-
+Route::get('/profile', [ProfileController::class, 'goToProfile'])->name('profile');
+Route::get('/profileUpdate', [ProfileController::class, 'goToUpdateProfile'])->name('profileUpdate');
 
 Route::get('/article', [ArticlesController::class, 'index'])->name('article');
 Route::get('/article/{id}', [ArticlesController::class, 'goToDetail'])->name('article.detail');
-
 
 Route::get('/merchandise', [ProductController::class, 'getAllProducts'])->name('merchandise');
 Route::get('/merchandise/{id}', [ProductController::class, 'checkout'])->name('checkout');
@@ -44,19 +44,6 @@ Route::post('/buy/{product}', [TransactionController::class, 'store'])->name('bu
 Route::get('/contribute', [ContributionsController::class, 'index'])->name('contribute');
 Route::get('/contribute/{id}', [ContributionsController::class, 'goToDetail'])->name('contribute.detail');
 Route::post('/contribute/{id}', [ContributionsController::class, 'donate'])->name('donate');
-
-
-Route::get('/account', function () {
-    return view('account');
-})->name('account');
-
-Route::get('/profile', function () {
-    return view('profile');
-})->name('profile');
-
-Route::get('/profileUpdate', function () {
-    return view('profileUpdate');
-})->name('profileUpdate');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('profile.logout');
 Route::post('/profile-delete', [AuthController::class, 'deleteAccount'])->name('profile.delete');

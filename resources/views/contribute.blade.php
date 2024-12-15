@@ -98,8 +98,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 400px; /* Ensure the container has a fixed height */
-        overflow: hidden; /* Prevent image overflow */
+        height: 400px; 
+        overflow: hidden; 
     }
 
     .card-title {

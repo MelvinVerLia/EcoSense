@@ -36,9 +36,8 @@ class ContactResource extends Resource
                     ->searchable()
                     ->label('Email'),
 
-                // Define the complaints column
                 Tables\Columns\TextColumn::make('complaints')
-                    ->limit(50) // Limit the number of characters to display
+                    ->limit(50) 
                     ->label('Complaints'),
             ])
             ->filters([

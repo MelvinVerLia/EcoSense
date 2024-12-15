@@ -9,12 +9,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->id();  // Auto-incrementing ID field
-            $table->string('title');  // Title of the article
-            $table->text('content');  // Content of the article
-            $table->string('author');  // Author name
-            $table->string('image')->nullable();  // Image path, nullable for cases when no image is uploaded
-            $table->timestamps();  // Created and updated timestamps
+            $table->id();  
+            $table->string('title');  
+            $table->text('content'); 
+            $table->string('author');  
+            $table->string('image')->nullable();  
+            $table->timestamps();  
         });
     }
 

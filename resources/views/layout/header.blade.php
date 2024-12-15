@@ -8,7 +8,6 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <title>Home</title>
     <style>
-        /* Light green themed navbar */
         .navbar {
             background-color: #d4edda;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -114,8 +113,6 @@
         </div>
     </nav>
 
-
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -58,7 +58,6 @@
     .article {
         width: 500px;
         background-color: rgba(212, 237, 218, 0.9);
-        /* Added background with transparency */
         padding: 50px;
         margin-bottom: 20px;
         border-radius: 8px;
@@ -90,7 +89,6 @@
 
     .btn {
         font-size: 2.5em;
-        /* Increase font size */
         background-color: white;
         color: #2D642F;
         border: 2px solid #4CAF50;
@@ -110,7 +108,6 @@
     @media (max-width: 768px) {
         .article {
             width: 100%;
-            /* On smaller screens, each article takes full width */
         }
     }
 </style>

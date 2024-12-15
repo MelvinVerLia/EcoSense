@@ -43,13 +43,11 @@
                 <div class="col col-xl-10">
                     <div class="card" style="border-radius: 1rem;">
                         <div class="row g-0">
-                            <!-- Image column now matches content column height -->
                             <div class="col-md-12 col-lg-5 d-none d-md-block">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                <img src="https://www.ecolabel.net/images/eco-label-nedir.jpg"
                                     alt="login form" class="img-fluid"
-                                    style="border-radius: 1rem 0 0 1rem; height: 100%; object-fit: cover;" />
+                                    style="border-radius: 1rem 0 0 1rem; width: 100%; height: 100%; object-fit: cover; object-position: center;" />
                             </div>
-                            <!-- Content column -->
                             <div class="col-md-12 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
 
@@ -60,10 +58,8 @@
                                             <span class="h1 fw-bold mb-0">Register Account</span>
                                         </div>
 
-                                        <!-- First Name -->
                                         <div class="form-outline mb-3">
                                             <div class="row">
-                                                <!-- First Name -->
                                                 <div class="col-12 col-md-6">
                                                     <label class="form-label" for="form2FirstName"
                                                         style="margin-bottom: 0;">First Name</label>
@@ -75,7 +71,6 @@
                                                     @enderror
                                                 </div>
 
-                                                <!-- Last Name -->
                                                 <div class="col-12 col-md-6">
                                                     <label class="form-label" for="form2LastName"
                                                         style="margin-bottom: 0;">Last Name</label>
@@ -89,7 +84,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- Email Address -->
                                         <div class="form-outline mb-3">
                                             <label class="form-label" for="form2Email" style="margin-bottom: 0;">Email
                                                 address</label>
@@ -100,7 +94,6 @@
                                             @enderror
                                         </div>
 
-                                        <!-- Password -->
                                         <div class="form-outline mb-3">
                                             <label class="form-label" for="form2Password"
                                                 style="margin-bottom: 0;">Password</label>
@@ -111,7 +104,6 @@
                                             @enderror
                                         </div>
 
-                                        <!-- Confirm Password -->
                                         <div class="form-outline mb-3">
                                             <label class="form-label" for="form2ConfirmPassword"
                                                 style="margin-bottom: 0;">Confirm Password</label>

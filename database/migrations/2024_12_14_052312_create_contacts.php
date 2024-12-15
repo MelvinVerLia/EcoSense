@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique(); // Add an email column
+            $table->string('email')->unique(); 
             $table->text('complaints');
             $table->timestamps();
         });

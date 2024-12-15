@@ -25,7 +25,6 @@ class ArticleResource extends Resource
                 Forms\Components\Textarea::make('content')->required(),
                 Forms\Components\TextInput::make('author')->required(),
 
-                // Image Upload Field
                 FileUpload::make('image')
                     ->image() 
                     ->disk('public') 

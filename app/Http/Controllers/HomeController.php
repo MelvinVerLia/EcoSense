@@ -20,7 +20,6 @@ class HomeController extends Controller
 
     public function getRandomProducts()
     {
-        // Fetch 4 random products
         $products = Product::inRandomOrder()
             ->take(3)
             ->get();
