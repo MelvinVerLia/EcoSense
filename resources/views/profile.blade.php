@@ -10,6 +10,8 @@
     </div>
 @endif
 
+
+
 <div class="container rounded bg-white mt-5 mb-5" style="height: 700px;">
     <div class="row">
         <div class="col-md-3 border-end">
@@ -17,8 +19,8 @@
                 <img class="rounded-circle mt-5" width="100px"
                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                     alt="User Profile">
-                <span class="font-weight-bold">{{ session('customer')['first_name'] ?? 'first_name' }}</span>
-                <span class="text-black-50">{{ session('customer')['email'] ?? 'Email' }}</span>
+                <span class="font-weight-bold">{{ $customer->first_name ?? 'first_name' }}</span>
+                <span class="text-black-50">{{ $customer->email ?? 'Email' }}</span>
 
                 <div class="mt-5 d-flex flex-column gap-2">
                     <a href="{{route('profile.logout')}}" class="btn rounded mb-2"
@@ -70,15 +72,15 @@
                 <div class="row mt-2">
                     <div class="col-md-12">
                         <label class="labels">First Name: </label>
-                        <label class="labels">{{ session('customer')['first_name'] ?? 'First Name' }}</label>
+                        <label class="labels">{{ $customer->first_name ?? 'First_name' }}</label>
                     </div>
                     <div class="col-md-12">
                         <label class="labels">Last Name: </label>
-                        <label class="labels">{{ session('customer')['last_name'] ?? 'Last Name' }}</label>
+                        <label class="labels">{{ $customer->last_name ?? 'Last_name' }}</label>
                     </div>
                     <div class="col-md-12">
                         <label class="labels">Email: </label>
-                        <label class="labels">{{ session('customer')['email'] ?? 'Email' }}</label>
+                        <label class="labels">{{ $customer->email ?? 'Email' }}</label>
                     </div>
                 </div>
             </div>

@@ -11,8 +11,8 @@
                 <img class="rounded-circle mt-5" width="100px"
                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                     alt="User Profile">
-                <span class="font-weight-bold">{{ session('customer')['first_name'] ?? 'first_name' }}</span>
-                <span class="text-black-50">{{ session('customer')['email'] ?? 'email' }}</span>
+                <span class="font-weight-bold">{{ $customer->first_name ?? 'first_name' }}</span>
+                <span class="text-black-50">{{ $customer->email ?? 'email' }}</span>
                 <div class="mt-5 d-flex flex-column gap-2">
                     <a href="{{route('profile.logout')}}" class="btn rounded mb-2"
                         style="background-color: black; color:white">Logout Account</a>
@@ -76,7 +76,7 @@
                         <div class="col-md-6">
                             <label class="labels">First Name</label>
                             <input type="text" name="first_name" class="form-control" placeholder="First Name"
-                                value="{{ session('customer')['first_name'] ?? '' }}">
+                                value="{{ $customer->first_name ?? '' }}">
                             @error('first_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -84,7 +84,7 @@
                         <div class="col-md-6">
                             <label class="labels">Last Name</label>
                             <input type="text" name="last_name" class="form-control" placeholder="Last Name"
-                                value="{{ session('customer')['last_name'] ?? '' }}">
+                                value="{{ $customer->last_name ?? '' }}">
                             @error('last_name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -95,7 +95,7 @@
                         <div class="col-md-12">
                             <label class="labels">Email</label>
                             <input type="email" name="email" class="form-control" placeholder="Email"
-                                value="{{ session('customer')['email'] ?? '' }}">
+                                value="{{ $customer->email ?? '' }}">
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

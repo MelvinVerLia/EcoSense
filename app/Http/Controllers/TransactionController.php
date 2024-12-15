@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\TransactionHeader;
 use Illuminate\Http\Request;
+use Session;
 
 class TransactionController extends Controller
 {
@@ -14,7 +16,8 @@ class TransactionController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $customerID = session('customer');
+        $customerID = Session::get('customer');
+        $customer = Customer::find($customerID);
 
         $product = Product::findOrFail($id);
 
@@ -25,7 +28,7 @@ class TransactionController extends Controller
         $total_price = $product->price * $request->quantity;
 
         $transaction = new TransactionHeader();
-        $transaction->customer_id = $customerID->id;  
+        $transaction->customer_id = $customer->id;  
         $transaction->product_id = $product->id;
         $transaction->price = $product->price;
         $transaction->quantity = $request->quantity;

@@ -11,10 +11,13 @@ class ProfileController extends Controller
 {
     public function updateProfile(Request $request)
     {
+        $customerID = Session::get('customer');
+        $customer = Customer::find($customerID);
+
         $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|email|unique:customers,email,' . session('customer')['id'],
+            'email' => 'required|email|unique:customers,email,' . $customerID,
             'old_password' => 'required|min:8',
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required|min:8',
@@ -22,8 +25,7 @@ class ProfileController extends Controller
             'new_password.confirmed' => 'The new password and the confirmation password must match.',
         ]);
 
-        $customer = Customer::find(session('customer')['id']); 
-        
+
         if (!$customer) {
             return redirect()->back()->with('error', 'User not found.');
         }
@@ -35,12 +37,12 @@ class ProfileController extends Controller
         $customer->first_name = $validatedData['first_name'];
         $customer->last_name = $validatedData['last_name'];
         $customer->email = $validatedData['email'];
-        $customer->password = bcrypt($validatedData['password']); 
+        $customer->password = bcrypt($validatedData['password']);
 
         $customer->save();
 
-        session(['customer' => $customer->toArray()]);
-        
+        session(['customer' => $customer->id]);
+
         return redirect()->route('home')->with('success', 'Profile updated successfully!');
 
     }
@@ -50,7 +52,9 @@ class ProfileController extends Controller
         if (!Session::has('customer')) {
             return redirect()->route('login');
         }
-        return view('profile');
+        $customerID = Session::get('customer');
+        $customer = Customer::find($customerID);
+        return view('profile', compact('customer'));
     }
 
     public function goToUpdateProfile()
@@ -58,6 +62,8 @@ class ProfileController extends Controller
         if (!Session::has('customer')) {
             return redirect()->route('login');
         }
-        return view('profileUpdate');
+        $customerID = Session::get('customer');
+        $customer = Customer::find($customerID);
+        return view('profileUpdate', compact('customer'));
     }
 }

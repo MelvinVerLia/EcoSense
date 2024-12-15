@@ -9,7 +9,7 @@
     "routes": [
         {
             "src": "/build/(.*)",
-            "dest": "/public/build/"
+            "dest": "/public/build/$1"
         },
         {
             "src": "/(.*)",
@@ -17,7 +17,7 @@
         },
         {
             "src": "/images/(.*)",
-            "dest": "/public/images/"
+            "dest": "/public/images/$1"
         },
         {
             "src": "/articles/(.*)",
@@ -56,7 +56,7 @@
         "VIEW_COMPILED_PATH": "/tmp",
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "database",
+        "SESSION_DRIVER": "cookie",
         "DB_CONNECTION": "mysql",
         "DB_HOST": "m3-qi.h.filess.io",
         "DB_PORT": "3307",

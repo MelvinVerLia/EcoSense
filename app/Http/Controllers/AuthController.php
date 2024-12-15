@@ -29,7 +29,7 @@ class AuthController extends Controller
         $customer = Customer::where('email', $request->email)->first();
 
         if ($customer && Hash::check($request->password, $customer->password)) {
-            Session::put('customer', $customer);
+            Session::put('customer', $customer->id);
             return redirect()->route('home');
         }
 
@@ -60,10 +60,10 @@ class AuthController extends Controller
 
     public function deleteAccount()
     {        
-        $customer = Session::get('customer');
-
-        if ($customer) {
-            $customer = Customer::find($customer->id);
+        $customerID = Session::get('customer');
+        
+        if ($customerID) {
+            $customer = Customer::find($customerID);
 
             if ($customer) {
                 $customer->delete();
