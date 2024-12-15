@@ -12,8 +12,32 @@
             "dest": "/public/build/"
         },
         {
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
             "src": "/images/(.*)",
-            "dest": "/public/images"
+            "dest": "/public/images/$1"
+        },
+        {
+            "src": "/articles/(.*)",
+            "dest": "/public/storage/articles/"
+        },
+        {
+            "src": "/contributions/(.*)",
+            "dest": "/public/storage/contributions/"
+        },
+        {
+            "src": "/merchandises/(.*)",
+            "dest": "/public/storage/merchandises/"
+        },
+        {
+            "src": "/css/filament/(.*)",
+            "dest": "/public/css/filament/"
+        },
+        {
+            "src": "/js/filament/(.*)",
+            "dest": "/public/js/filament/"
         }
     ],
     "public": true,
