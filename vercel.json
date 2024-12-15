@@ -12,32 +12,8 @@
             "dest": "/public/build/$1"
         },
         {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
             "src": "/images/(.*)",
             "dest": "/public/images/$1"
-        },
-        {
-            "src": "/storage/articles/(.*)",
-            "dest": "/public/storage/articles/$1"
-        },
-        {
-            "src": "/storage/contributions/(.*)",
-            "dest": "/public/storage/contributions/$1"
-        },
-        {
-            "src": "/storage/merchandises/(.*)",
-            "dest": "/public/storage/merchandises/$1"
-        },
-        {
-            "src": "/css/filament/(.*)",
-            "dest": "/public/css/filament/$1"
-        },
-        {
-            "src": "/js/filament/(.*)",
-            "dest": "/public/js/filament/"
         }
     ],
     "public": true,
