@@ -53,7 +53,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url('{{ asset('images/BG.png') }}');
+        background-image: url('https://img.freepik.com/free-vector/simple-pattern-white-branches-background_53876-60579.jpg');
         background-size: cover;
         background-position: center;
         opacity: 0.3;

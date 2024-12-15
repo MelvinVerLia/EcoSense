@@ -22,7 +22,7 @@
 
 <div class="hero">
     <div class="hero-content">
-        <h1>Preserve Our Forests, Protect Our Future</h1>
+        <h1 style="color: white;">Preserve Our Forests, Protect Our Future</h1>
         <p>Together, we can make a difference</p>
         <p>Join Us in Our Mission Today</p>
         <a href="{{route('contribute')}}" class="btn btn-success rounded-pill">Contribute Now</a>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="col-md-6">
-            <img src="{{ asset('images/butterfly.jpg') }}" class="img-fluid shadow-lg full-width-image"
+            <img src="https://cdn.pixabay.com/photo/2018/06/16/04/22/forest-3478179_1280.jpg" class="img-fluid shadow-lg full-width-image"
                 alt="EcoSense Image">
         </div>
     </div>
@@ -134,10 +134,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('{{ asset('images/BG.png') }}');
+            background-image: url('https://img.freepik.com/free-vector/simple-pattern-white-branches-background_53876-60579.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.3;
+            opacity: 0.5;
             z-index: -1;
         }
 
@@ -164,7 +164,7 @@
         }
 
         .hero {
-            background: url('{{ asset('images/forest.png') }}') no-repeat center center;
+            background: url('https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/t/n/tnc_89036442_preview_cropped.jpg?crop=0%2C0%2C1600%2C880&wid=4000&hei=2200&scl=0.4') no-repeat center center;
             background-size: cover;
             height: 900px;
             display: flex;
@@ -173,6 +173,7 @@
             text-align: center;
             color: white;
             padding: 20px;
+            filter: brightness(0.9);
         }
 
         .hero h1 {

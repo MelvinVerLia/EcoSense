@@ -37,7 +37,7 @@
 </head>
 
 <body>
-    <section class="vh-100" style="background: url('{{ asset('images/forest.png') }}') no-repeat center center ">
+    <section class="vh-100" style="background: url('https://store-images.s-microsoft.com/image/apps.4083.14191174512742283.25b58903-5b4d-47c0-959c-c79a5aabf46c.17e473bf-b171-4bc5-b00e-f1a6f54977e1') no-repeat center center; background-size: cover;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">

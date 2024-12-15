@@ -92,8 +92,9 @@
 
 <style>
     body {
-        background: url('{{ asset('images/forest.png') }}') no-repeat center center;
+        background: url('https://wallpapers.com/images/hd/forest-green-background-g6m2rr1edx45d7kz.jpg') no-repeat center center;
         background-size: cover;
+        filter: brightness(0.8);
     }
 
     .form-control:focus {
