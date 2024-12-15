@@ -6,38 +6,34 @@
             "runtime": "vercel-php@0.6.2"
         }
     },
-    "routes": [
+    "rewrites": [
         {
-            "src": "/build/(.*)",
-            "dest": "/public/build/$1"
+            "source": "/build/(.*)",
+            "destination": "/public/build/$1"
         },
         {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
+            "source": "/images/(.*)",
+            "destination": "/public/images/$1"
         },
         {
-            "src": "/images/(.*)",
-            "dest": "/public/images/$1"
+            "source": "/articles/(.*)",
+            "destination": "/public/storage/articles/$1"
         },
         {
-            "src": "/articles/(.*)",
-            "dest": "/public/storage/articles/"
+            "source": "/contributions/(.*)",
+            "destination": "/public/storage/contributions/$1"
         },
         {
-            "src": "/contributions/(.*)",
-            "dest": "/public/storage/contributions/"
+            "source": "/merchandises/(.*)",
+            "destination": "/public/storage/merchandises/$1"
         },
         {
-            "src": "/merchandises/(.*)",
-            "dest": "/public/storage/merchandises/"
+            "source": "/css/filament/(.*)",
+            "destination": "/public/css/filament/$1"
         },
         {
-            "src": "/css/filament/(.*)",
-            "dest": "/public/css/filament/"
-        },
-        {
-            "src": "/js/filament/(.*)",
-            "dest": "/public/js/filament/"
+            "source": "/js/filament/(.*)",
+            "destination": "/public/js/filament/$1"
         }
     ],
     "public": true,
