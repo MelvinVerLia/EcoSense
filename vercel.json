@@ -6,17 +6,11 @@
             "runtime": "vercel-php@0.6.2"
         }
     },
-    "routes": [
-        {
-            "src": "/build/(.*)",
-            "dest": "/public/build/$1"
-        },
-        {
-            "source": "/images/(.*)",
-            "destination": "/public/images/$1"
-        }
-    ],
     "rewrites": [
+        {
+            "source": "/build/(.*)",
+            "destination": "/public/build/$1"
+        },
         {
             "source": "/images/(.*)",
             "destination": "/public/images/$1"
